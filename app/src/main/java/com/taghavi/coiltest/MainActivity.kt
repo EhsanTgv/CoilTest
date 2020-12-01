@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imageView.load("https://file.example.vn/images/file_example_JPG_100kB.jpg")
+        binding.imageView.load("https://file.example.vn/images/file_example_JPG_100kB.jpg") {
+            placeholder(R.drawable.ic_launcher_foreground)
+            error(android.R.drawable.ic_delete)
+        }
     }
 }
