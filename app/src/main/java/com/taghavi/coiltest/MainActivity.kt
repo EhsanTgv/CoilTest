@@ -2,6 +2,7 @@ package com.taghavi.coiltest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import coil.api.load
 import com.taghavi.coiltest.databinding.ActivityMainBinding
 
@@ -17,6 +18,10 @@ class MainActivity : AppCompatActivity() {
         binding.imageView.load("https://file.example.vn/images/file_example_JPG_100kB.jpg") {
             placeholder(R.drawable.ic_launcher_foreground)
             error(android.R.drawable.ic_delete)
+            target { drawable ->
+                binding.imageView.setImageDrawable(drawable)
+                Toast.makeText(applicationContext, "loaded", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
