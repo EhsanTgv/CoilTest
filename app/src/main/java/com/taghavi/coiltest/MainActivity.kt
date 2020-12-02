@@ -2,8 +2,8 @@ package com.taghavi.coiltest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import coil.api.load
+import coil.transform.BlurTransformation
 import com.taghavi.coiltest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,14 +14,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
 
+    override fun onResume() {
+        super.onResume()
         binding.imageView.load("https://file.example.vn/images/file_example_JPG_100kB.jpg") {
             placeholder(R.drawable.ic_launcher_foreground)
             error(android.R.drawable.ic_delete)
-            target { drawable ->
-                binding.imageView.setImageDrawable(drawable)
-                Toast.makeText(applicationContext, "loaded", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 }
