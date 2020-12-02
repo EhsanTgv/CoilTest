@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding.imageView.load("https://file.example.vn/images/file_example_JPG_100kB.jpg") {
             placeholder(R.drawable.ic_launcher_foreground)
             error(android.R.drawable.ic_delete)
+            transformations(BlurTransformation(this@MainActivity))
         }
     }
 }
