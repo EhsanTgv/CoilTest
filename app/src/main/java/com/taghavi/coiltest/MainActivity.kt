@@ -2,8 +2,10 @@ package com.taghavi.coiltest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import coil.api.load
-import coil.transform.BlurTransformation
+import coil.transform.CircleCropTransformation
 import com.taghavi.coiltest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,10 +20,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.imageView.load("https://file.example.vn/images/file_example_JPG_100kB.jpg") {
-            placeholder(R.drawable.ic_launcher_foreground)
-            error(android.R.drawable.ic_delete)
-            transformations(BlurTransformation(this@MainActivity))
-        }
+        val disposable =
+            binding.imageView.load("https://file.example.vn/images/file_example_JPG_100kB.jpg") {
+                placeholder(R.drawable.ic_launcher_foreground)
+                error(android.R.drawable.ic_delete)
+                transformations(CircleCropTransformation())
+            }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            disposable.dispose()
+        }, 10000)
     }
 }
